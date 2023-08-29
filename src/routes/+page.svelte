@@ -48,7 +48,7 @@
 				<button class="btn btn-primary float-end" on:click={buy(poke)}>Buy</button>
 			</PokemonCard>
 		{:else}
-			Loading...
+			Nothing to show.
 		{/each}
 	</div>
 </div>
