@@ -2,6 +2,7 @@
 	import PokemonCard from "../PokemonCard.svelte";
 	import { credit, cart, price } from "$lib";
 	import { goto } from "$app/navigation";
+	import Navbar from "../Navbar.svelte";
 
 	function remove(i:number) {
 		return () => {
@@ -17,9 +18,9 @@
 		}
 	}
 </script>
+
+<Navbar />
 <div class="container">
-<a href="/">Home</a>
-	Available credit: <span class="fw-bold">${$credit}</span>
 	<div class="row">
 	{#each $cart as pokemon,i}
 		<PokemonCard {pokemon}>

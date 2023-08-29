@@ -3,6 +3,7 @@
 	import { pokemon, credit, price, cart } from '$lib';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import Navbar from './Navbar.svelte';
 
 	onMount(() => {
 		if($pokemon.length > 0)
@@ -36,11 +37,10 @@
 	$: pokemonFiltered = $pokemon.filter(p => p.name.includes(search)).slice(0, 20)
 </script>
 
+<Navbar />
 <div class="container">
-	Available credit: <span class="fw-bold">${$credit}</span>
-	<a href="/cart">View cart</a>
 	<div>
-		<input type="text" bind:value={search} />
+		Search: <input type="text" bind:value={search} />
 	</div>
 	<div class="row">
 		{#each pokemonFiltered as poke}
