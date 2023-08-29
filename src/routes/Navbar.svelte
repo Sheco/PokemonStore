@@ -1,5 +1,5 @@
 <script>
-	import { cartTotal, credit } from "$lib";
+	import { cartTotal,  creditAvailable } from "$lib";
 	import { page } from "$app/stores";
 </script>
 
@@ -10,10 +10,10 @@
 	</a>
 
 	<span class="nav navbar-text me-2">
-		Credit: <span class="fw-bold">${$credit}</span><br>
+		Total: <span class="fw-bold">${$cartTotal}</span>
 	</span>
 	<span class="nav navbar-text me-2">
-		Total: <span class="fw-bold">${$cartTotal}</span>
+		Credit: <span class="fw-bold">${$creditAvailable}</span><br>
 	</span>
 
 	<ul class="nav nav-pills">
