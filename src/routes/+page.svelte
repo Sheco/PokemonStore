@@ -5,6 +5,8 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		if($pokemon.length > 0)
+			return
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
