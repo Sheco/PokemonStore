@@ -1,15 +1,14 @@
 <script lang="ts">
 	import PokemonCard from './PokemonCard.svelte';
-	let pokemon:Pokemon[] = []
-	import { credit, price, cart } from '$lib';
+	import { pokemon, credit, price, cart } from '$lib';
 	import { goto } from '$app/navigation';
 
-	fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
+	fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
 	.then(x => x.json())
 	.then(async (x:PokemonList) => {
-	  pokemon = await Promise.all(x.results.map(
+	  pokemon.set(await Promise.all(x.results.map(
 				(poke) => fetch(poke.url).then(x => x.json())
-		));
+		)));
 	})
 
 	function buy(pokemon:Pokemon) {
@@ -28,13 +27,18 @@
 		}
 	}
 
+	let search = ""
+	$: pokemonFiltered = $pokemon.filter(p => p.name.includes(search)).slice(0, 20)
 </script>
 
 <div class="container">
 	Available credit: <span class="fw-bold">${$credit}</span>
 	<a href="/cart">View cart</a>
+	<div>
+		<input type="text" bind:value={search} />
+	</div>
 	<div class="row">
-		{#each pokemon as poke}
+		{#each pokemonFiltered as poke}
 			<PokemonCard pokemon={poke}>
 				<button class="btn btn-primary float-end" on:click={buy(poke)}>Buy</button>
 			</PokemonCard>
