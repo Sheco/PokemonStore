@@ -12,15 +12,13 @@
 		));
 	})
 
-	let error = ""
 	function buy(pokemon:Pokemon) {
 		return async () => {
 			let p = price(pokemon)
 			if (p > $credit) {
-				error = "Not enough credit."
+				alert('Not enough credit')
 				return
 			}
-			error = ""
 			credit.update(x => x-p)
 			cart.update(x => {
 				x.push(pokemon)
@@ -36,9 +34,6 @@
 	Available credit: <span class="fw-bold">${$credit}</span>
 	<a href="/cart">View cart</a>
 	<div class="row">
-		{#if error}
-		<div class="alert alert-danger">{error}</div>
-		{/if}
 		{#each pokemon as poke}
 			<PokemonCard pokemon={poke}>
 				<button class="btn btn-primary float-end" on:click={buy(poke)}>Buy</button>
