@@ -19,6 +19,7 @@ interface Pokemon {
 	height: number;
 	weight: number;
 	id: number;
+	price: number;
 	name: string;
 	order: number;
 	sprites: {

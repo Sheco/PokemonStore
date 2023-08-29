@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PokemonCard from './PokemonCard.svelte';
-	import { pokemon, credit, price, cart } from '$lib';
+	import { pokemon, price, cart, creditAvailable } from '$lib';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Navbar from './Navbar.svelte';
@@ -12,19 +12,21 @@
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
 			pokemon.set(await Promise.all(x.results.map(
-					(poke) => fetch(poke.url).then(x => x.json())
+					async (poke) => {
+						let data:Pokemon = await fetch(poke.url).then(x => x.json())
+						data.price = price(data)
+						return data
+					}
 			)));
 		})
 	})
 
 	function buy(pokemon:Pokemon) {
 		return async () => {
-			let p = price(pokemon)
-			if (p > $credit) {
+			if (pokemon.price > $creditAvailable) {
 				alert('Not enough credit')
 				return
 			}
-			credit.update(x => x-p)
 			cart.update(x => {
 				x.push(pokemon)
 				return x
@@ -45,7 +47,7 @@
 	<div class="row">
 		{#each pokemonFiltered as poke}
 			<PokemonCard pokemon={poke}>
-				<button class="btn btn-primary float-end" on:click={buy(poke)}>Buy</button>
+				<button class="btn btn-primary float-end" disabled={poke.price > $creditAvailable} on:click={buy(poke)}>Buy</button>
 			</PokemonCard>
 		{:else}
 			Nothing to show.

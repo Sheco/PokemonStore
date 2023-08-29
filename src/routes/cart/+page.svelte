@@ -1,15 +1,11 @@
 <script lang="ts">
 	import PokemonCard from "../PokemonCard.svelte";
-	import { credit, cart, price } from "$lib";
+	import { cart } from "$lib";
 	import { goto } from "$app/navigation";
 	import Navbar from "../Navbar.svelte";
 
 	function remove(i:number) {
 		return () => {
-			
-			let p = price($cart[i])
-			credit.update(x => x+p)
-
 			cart.update(x => {
 				x.splice(i, 1)
 				return x
