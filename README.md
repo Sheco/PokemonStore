@@ -34,9 +34,9 @@ with a button to remove it from the cart.
 
 Create the user interface to switch between the main view and the cart.
 
-### Task 5: Show the available credits
+### Task 5: Show the cart total and the available credit
 
-The available credit can be anywhere in the views.
+These values can be displayed anywhere in the app.
 
 ### Task 6: Add a search field
 
