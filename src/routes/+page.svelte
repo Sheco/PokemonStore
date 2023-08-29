@@ -2,13 +2,16 @@
 	import PokemonCard from './PokemonCard.svelte';
 	import { pokemon, credit, price, cart } from '$lib';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-	fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
-	.then(x => x.json())
-	.then(async (x:PokemonList) => {
-	  pokemon.set(await Promise.all(x.results.map(
-				(poke) => fetch(poke.url).then(x => x.json())
-		)));
+	onMount(() => {
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
+		.then(x => x.json())
+		.then(async (x:PokemonList) => {
+			pokemon.set(await Promise.all(x.results.map(
+					(poke) => fetch(poke.url).then(x => x.json())
+			)));
+		})
 	})
 
 	function buy(pokemon:Pokemon) {
