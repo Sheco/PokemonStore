@@ -3,7 +3,7 @@
 import { writable } from "svelte/store";
 
 export let pokemon = writable([] as Pokemon[])
-export let credit = writable(150)
+export let credit = writable(250)
 export let cart = writable([] as Pokemon[])
 
 export function price(poke:Pokemon) {
