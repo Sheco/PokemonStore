@@ -34,7 +34,7 @@
 	}
 
 	let search = ""
-	$: pokemonFiltered = $pokemon.filter(p => p.name.includes(search)).slice(0, 20)
+	$: pokemonFiltered = $pokemon.filter(p => p.name.includes(search.toLowerCase())).slice(0, 20)
 </script>
 
 <Navbar />
