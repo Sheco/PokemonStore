@@ -11,7 +11,7 @@ A running copy of this code is currently hosted at Vercel at [Pokemon Store](htt
 ### Task 1: Create a list of pokemon
 
 [ ] Create a view that lists all of the pokemon using the PokeAPI
-[https://pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon) (Initially limit this to showing only 20 pokemon)
+[https://pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon)
 
 Each pokemon should display the following properties:
 - default front image
@@ -48,6 +48,8 @@ with a button to remove it from the cart.
 
 The PokeAPI does not have any support for searching, so you will need
 to fetch the entire list of pokemon and filter it in the frontend.
+
+To fetch the full list, use [https://pokeapi.co/api/v2/pokemon?limit=2000](https://pokeapi.co/api/v2/pokemon?limit=2000)
 
 You might need to think about how to optimize the operation to reduce
 the number of requests to the API.
