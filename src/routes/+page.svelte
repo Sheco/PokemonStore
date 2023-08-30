@@ -4,33 +4,19 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Navbar from './Navbar.svelte';
-	import Page from './cart/+page.svelte';
 
-	let loading = true;
 	onMount(() => {
 		if($pokemon.length > 0)
 			return
-		loading = true
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
-			pokemon.set(await Promise.all(x.results.map(
-					async (poke) => {
-						let data:Pokemon = await fetch(poke.url).then(x => x.json())
-						data.price = price(data)
-						return data
-					}
-			)));
-			loading = false;
+			pokemon.set(x.results)
 		})
 	})
 
-	function buy(pokemon:Pokemon) {
+	function buy(pokemon:PokemonResource) {
 		return async () => {
-			if (pokemon.price > $creditAvailable) {
-				alert('Not enough credit')
-				return
-			}
 			cart.update(x => {
 				x.push(pokemon)
 				return x
@@ -48,17 +34,13 @@
 	<div>
 		Search: <input type="text" bind:value={search} />
 	</div>
-	{#if loading}
-		Loading...
-	{:else}
-		<div class="row">
-			{#each pokemonFiltered as poke}
-				<PokemonCard pokemon={poke}>
-					<button class="btn btn-primary float-end" disabled={poke.price > $creditAvailable} on:click={buy(poke)}>Buy</button>
-				</PokemonCard>
-			{:else}
-				Nothing to show.
-			{/each}
-		</div>
-	{/if}
+	<div class="row">
+		{#each pokemonFiltered as poke (poke.name)}
+			<PokemonCard resource={poke} let:pokemon>
+				<button class="btn btn-primary float-end" disabled={pokemon.price > $creditAvailable} on:click={buy(poke)}>Buy</button>
+			</PokemonCard>
+		{:else}
+			Nothing to show.
+		{/each}
+	</div>
 </div>
