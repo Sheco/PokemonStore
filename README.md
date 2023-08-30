@@ -26,6 +26,7 @@ Add this to the previous view.
 ### Task 3: Create a shopping cart
 
 [ ] The user will get $250 credits to buy pokemon. 
+
 [ ] Update the list of pokemons, adding a button to add it to the cart.
 
 [ ] The user should only be able to add as many pokemon as he can afford.
@@ -51,3 +52,12 @@ to fetch the entire list of pokemon and filter it in the frontend.
 You might need to think about how to optimize the operation to reduce
 the number of requests to the API.
 
+### Task 7: Add documentation
+
+[ ] Add documentation to the code, using comments to describe your
+ideas around functions and blocks of code.
+
+### Task 8: Create a deployment plan
+
+[ ] Talk about the deployment plan, initially the app can be run 
+locally, but you need to consider the hosting options.
