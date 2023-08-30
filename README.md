@@ -10,7 +10,7 @@ A running copy of this code is currently hosted at Vercel at [Pokemon Store](htt
 
 ### Task 1: Create a list of pokemon
 
-[ ] Create a view that lists all of the pokemon using the PokeAPI
+[ ] Create a view that shows a list of pokemon using the PokeAPI
 [https://pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon)
 
 Each pokemon should display the following properties:
@@ -27,11 +27,11 @@ Add this to the previous view.
 
 [ ] The user will get $250 credits to buy pokemon. 
 
-[ ] Update the list of pokemons, adding a button to add it to the cart.
+[ ] Update the list of pokemon, adding a button to add it to the cart.
 
 [ ] The user should only be able to add as many pokemon as he can afford.
 
-[ ] Create a new view, to show the pokemon in the cart, each one of them
+[ ] Create a new view to show the pokemon in the cart, each one of them
 with a button to remove it from the cart.
 
 ### Task 4: Add a navigation bar
