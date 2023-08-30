@@ -8,7 +8,7 @@
 	onMount(() => {
 		if($pokemonList.length > 0)
 			return
-		fetch('https://pokeapi.co/api/v2/pokemon?limit=10000')
+		fetch('https://pokeapi.co/api/v2/pokemon')
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
 			pokemonList.set(x.results)
@@ -25,7 +25,7 @@
 		}
 	}
 
-	$: results = $pokemonList.filter(p => p.name.includes($search.toLowerCase())).slice(0, 10)
+	$: results = $pokemonList.filter(p => p.name.includes($search.toLowerCase())).slice(0, 50)
 </script>
 
 <Navbar />
