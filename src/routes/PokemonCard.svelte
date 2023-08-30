@@ -6,21 +6,21 @@
 
 <style>
 	.img {
-	  width: 300px;
-		height: 300px;
+	  width: 150px;
+		height: 150px;
 	}
 	.pokemon {
-	  height: 575px;
+	  height: 420px;
 	}
 </style>
 <div class="pokemon card col-md-3 col-sm-12 mt-2 ms-2">
 {#await promise}
-		<img src="" class="card-img-top img" alt="">
+		<img src="" class="card-img-top img ms-auto me-auto" alt="">
 		<div class="card-body">
 			<h5 class="card-title text-center">{resource.name} <span class="fw-bold float-end">$?</span></h5>
 		</div>
 {:then pokemon}
-		<img src="{pokemon.sprites.front_default}" class="card-img-top img" alt="">
+		<img src="{pokemon.sprites.front_default}" class="card-img-top img ms-auto me-auto" alt="">
 		<div class="card-body">
 			<h5 class="card-title text-center">{pokemon.name} <span class="fw-bold float-end">${pokemon.price}</span></h5>
 			<table class="table">
