@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PokemonCard from './PokemonCard.svelte';
-	import { pokemonList, cart, creditAvailable } from '$lib';
+	import { search, pokemonList, cart, creditAvailable } from '$lib';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Navbar from './Navbar.svelte';
@@ -25,14 +25,13 @@
 		}
 	}
 
-	let search = ""
-	$: results = $pokemonList.filter(p => p.name.includes(search.toLowerCase())).slice(0, 10)
+	$: results = $pokemonList.filter(p => p.name.includes($search.toLowerCase())).slice(0, 10)
 </script>
 
 <Navbar />
 <div class="container">
 	<div>
-		Search: <input type="text" bind:value={search} />
+		Search: <input type="text" bind:value={$search} />
 	</div>
 	<div class="row">
 		{#each results as resource (resource.name)}

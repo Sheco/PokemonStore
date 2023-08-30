@@ -2,6 +2,7 @@
 
 import { derived, writable } from "svelte/store";
 
+export let search = writable("")
 export let pokemonList = writable([] as PokemonResource[])
 export let credit = writable(250)
 export let cart = writable([] as PokemonResource[])
