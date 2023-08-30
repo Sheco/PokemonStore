@@ -3,15 +3,13 @@
 	export let resource:PokemonResource
 	let promise:Promise<Pokemon> = fetchPokemon(resource)
 </script>
+<div class="card col-md-3 col-sm-12 mt-2 ms-2">
 {#await promise}
-	<div class="card col-md-3 col-sm-12 mt-2 ms-2">
 		<img src="" class="card-img-top" alt="">
 		<div class="card-body">
 			<h5 class="card-title text-center">{resource.name} <span class="fw-bold float-end">$?</span></h5>
 		</div>
-	</div>
 {:then pokemon}
-	<div class="card col-md-3 col-sm-12 mt-2 ms-2">
 		<img src="{pokemon.sprites.front_default}" class="card-img-top" alt="">
 		<div class="card-body">
 			<h5 class="card-title text-center">{pokemon.name} <span class="fw-bold float-end">${pokemon.price}</span></h5>
@@ -30,5 +28,5 @@
 			</table>
 			<slot pokemon={pokemon}/>
 		</div>
-	</div>
 {/await}
+</div>
