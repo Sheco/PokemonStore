@@ -8,7 +8,7 @@
 	onMount(() => {
 		if($pokemonList.length > 0)
 			return
-		fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=10000')
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
 			pokemonList.set(x.results)
