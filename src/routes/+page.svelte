@@ -4,10 +4,13 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Navbar from './Navbar.svelte';
+	import Page from './cart/+page.svelte';
 
+	let loading = true;
 	onMount(() => {
 		if($pokemon.length > 0)
 			return
+		loading = true
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
 		.then(x => x.json())
 		.then(async (x:PokemonList) => {
@@ -18,6 +21,7 @@
 						return data
 					}
 			)));
+			loading = false;
 		})
 	})
 
@@ -44,13 +48,17 @@
 	<div>
 		Search: <input type="text" bind:value={search} />
 	</div>
-	<div class="row">
-		{#each pokemonFiltered as poke}
-			<PokemonCard pokemon={poke}>
-				<button class="btn btn-primary float-end" disabled={poke.price > $creditAvailable} on:click={buy(poke)}>Buy</button>
-			</PokemonCard>
-		{:else}
-			Nothing to show.
-		{/each}
-	</div>
+	{#if loading}
+		Loading...
+	{:else}
+		<div class="row">
+			{#each pokemonFiltered as poke}
+				<PokemonCard pokemon={poke}>
+					<button class="btn btn-primary float-end" disabled={poke.price > $creditAvailable} on:click={buy(poke)}>Buy</button>
+				</PokemonCard>
+			{:else}
+				Nothing to show.
+			{/each}
+		</div>
+	{/if}
 </div>
