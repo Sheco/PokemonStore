@@ -34,6 +34,9 @@
 		Search: <input type="text" bind:value={$search} />
 	</div>
 	<div class="row">
+		{#if $pokemonList.length == 0}
+		  Loading pokemon list...
+		{:else}
 		{#each results as resource (resource.name)}
 			<PokemonCard {resource} let:pokemon>
 				<button class="btn btn-primary float-end" disabled={pokemon.price > $creditAvailable} on:click={buy(resource)}>Buy</button>
@@ -41,5 +44,6 @@
 		{:else}
 			Nothing to show.
 		{/each}
+		{/if}
 	</div>
 </div>
