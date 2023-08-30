@@ -18,6 +18,8 @@ Each pokemon should display the following properties:
 - name
 - every one of its stats (hp, attack, defense, etc)
 
+[ ] Add a loading message or animation
+
 ### Task 2: Add a price to the pokemon
 
 [ ] Every pokemon should have a price, which will be the average value of all of its stats.
