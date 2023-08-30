@@ -2,7 +2,6 @@
 	import PokemonCard from "../PokemonCard.svelte";
 	import { cart } from "$lib";
 	import { goto } from "$app/navigation";
-	import Navbar from "../Navbar.svelte";
 
 	function remove(i:number) {
 		return () => {
@@ -15,13 +14,10 @@
 	}
 </script>
 
-<Navbar />
-<div class="container">
-	<div class="row">
-	{#each $cart as resource,i}
-		<PokemonCard {resource}>
-			<button class="btn btn-secondary" on:click={remove(i)}>Remove</button>
-		</PokemonCard>
-	{/each}
-	</div>
+<div class="row">
+{#each $cart as resource,i}
+	<PokemonCard {resource}>
+		<button class="btn btn-secondary" on:click={remove(i)}>Remove</button>
+	</PokemonCard>
+{/each}
 </div>

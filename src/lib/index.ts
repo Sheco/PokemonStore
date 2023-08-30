@@ -10,7 +10,6 @@ export let cartTotal = derived(cart, ($cart) => $cart.reduce((total, pokemon) =>
 export let creditAvailable = derived([cartTotal, credit], ([$t, $c]) => $c-$t)
 
 let pokemonCache:{[key:string]: Pokemon} = {}
-
 export async function fetchPokemon(pokemonResource:PokemonResource) {
 	if(pokemonCache[pokemonResource.name])
 		return pokemonCache[pokemonResource.name]
