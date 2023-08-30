@@ -18,8 +18,8 @@
 <Navbar />
 <div class="container">
 	<div class="row">
-	{#each $cart as pokemonResource,i}
-		<PokemonCard resource={pokemonResource}>
+	{#each $cart as resource,i}
+		<PokemonCard {resource}>
 			<button class="btn btn-secondary" on:click={remove(i)}>Remove</button>
 		</PokemonCard>
 	{/each}

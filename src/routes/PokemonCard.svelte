@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { fetchPokemon, statName } from "$lib";
 	export let resource:PokemonResource
-	let pokemon:Promise<Pokemon> = fetchPokemon(resource)
+	let promise:Promise<Pokemon> = fetchPokemon(resource)
 </script>
-{#await pokemon}
+{#await promise}
 	<div class="card col-md-3 col-sm-12 mt-2 ms-2">
 		<img src="" class="card-img-top" alt="">
 		<div class="card-body">

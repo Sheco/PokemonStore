@@ -2,27 +2,23 @@
 
 import { derived, writable } from "svelte/store";
 
-export let pokemon = writable([] as PokemonResource[])
+export let pokemonList = writable([] as PokemonResource[])
 export let credit = writable(250)
 export let cart = writable([] as PokemonResource[])
 export let cartTotal = derived(cart, ($cart) => $cart.reduce((total, pokemon) => total+pokemonCache[pokemon.name].price, 0))
 export let creditAvailable = derived([cartTotal, credit], ([$t, $c]) => $c-$t)
 
-export function price(poke:Pokemon) {
-	return Math.round(poke.stats.reduce((total, stat) => total+stat.base_stat, 0)/poke.stats.length)
-}
-
 let pokemonCache:{[key:string]: Pokemon} = {}
 
-export async function fetchPokemon(poke:PokemonResource) {
-	if(pokemonCache[poke.name])
-		return pokemonCache[poke.name]
+export async function fetchPokemon(pokemonResource:PokemonResource) {
+	if(pokemonCache[pokemonResource.name])
+		return pokemonCache[pokemonResource.name]
 	
-	let data:Pokemon = await fetch(poke.url).then(x => x.json())
-	data.price = price(data)
+	let pokemon:Pokemon = await fetch(pokemonResource.url).then(x => x.json())
+	pokemon.price = Math.round(pokemon.stats.reduce((total, stat) => total+stat.base_stat, 0)/pokemon.stats.length)
 
-	pokemonCache[poke.name] = data
-	return data
+	pokemonCache[pokemonResource.name] = pokemon
+	return pokemon
 
 }
 
