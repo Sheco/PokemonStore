@@ -33,8 +33,9 @@ Add this to the previous view.
 
 [ ] The user should only be able to add as many pokemon as he can afford.
 
-[ ] Create a new view to show the pokemon in the cart, each one of them
-with a button to remove it from the cart.
+[ ] Create a new view to show the pokemon in the cart
+
+[ ] Every pokemon needs a button to remove it from the cart.
 
 ### Task 4: Add a navigation bar
 
