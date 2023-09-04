@@ -1,4 +1,5 @@
 <script>
+	// This is the navigation bar, satisfies task4
 	import { cartTotal,  creditAvailable } from "$lib";
 	import { page } from "$app/stores";
 </script>
@@ -9,6 +10,7 @@
 		<span class="fs-4 text-light">Pokemon Store 0.1.5</span>
 	</a>
 
+	<!-- include the total and the credit, satisfying task5 -->
 	<span class="nav navbar-text me-2">
 		Total: <span class="fw-bold">${$cartTotal}</span>
 	</span>

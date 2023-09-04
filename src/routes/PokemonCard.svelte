@@ -1,4 +1,6 @@
 <script lang="ts">
+	// This is the PokemonCard component, it receives a pokemon resource
+	// and it will lazy-load the full Pokemon data and display it.
 	import { fetchPokemon, statName } from "$lib";
 	export let resource:PokemonResource
 	let promise:Promise<Pokemon> = fetchPokemon(resource)
